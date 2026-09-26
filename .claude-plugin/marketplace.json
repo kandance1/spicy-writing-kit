@@ -1,0 +1,11 @@
+{
+  "name": "spicy-writing-kit-marketplace",
+  "owner": { "name": "peggy" },
+  "plugins": [
+    {
+      "name": "spicy-writing-kit",
+      "source": ".",
+      "description": "Fiction writing kit — Fox voice base + style templates."
+    }
+  ]
+}
