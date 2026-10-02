@@ -20,11 +20,11 @@
     main{min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:18px;padding:18px 0}
     .chat-card,.side-card{background:#1e1f1cdd;border:1px solid var(--line);border-radius:18px;overflow:hidden}.chat-card{display:grid;grid-template-rows:auto 1fr auto;min-height:calc(100dvh - 124px)}.chat-head{padding:15px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px}.chat-head strong{font-size:14px;font-weight:600}.chat-head span{font-size:12px;color:var(--muted)}.chat-tools{display:flex;gap:7px}.chat-tools button{background:none;border:0;color:var(--muted);padding:6px;font-size:12px}.chat-tools button:hover{color:var(--accent-2)}
     .messages{padding:24px clamp(14px,4vw,42px);overflow:auto;scroll-behavior:smooth;display:flex;flex-direction:column;gap:17px}.welcome{margin:auto;max-width:480px;text-align:center;padding:30px 8px;color:var(--muted)}.welcome .ornament{font:30px Georgia,serif;color:var(--accent);margin-bottom:10px}.welcome h2{font:500 24px/1.25 Georgia,"Noto Serif TC",serif;color:var(--text);margin:0 0 10px}.welcome p{margin:0 auto 18px;max-width:390px;font-size:14px}.welcome .hint{display:inline-flex;padding:7px 11px;border:1px solid var(--line);border-radius:99px;font-size:12px}
-    .message{max-width:min(82%,680px);white-space:pre-wrap;overflow-wrap:anywhere;padding:13px 16px;border-radius:16px;font-size:15px;line-height:1.75}.message.user{align-self:flex-end;background:#39342c;border:1px solid #6d5942;border-bottom-right-radius:5px}.message.assistant{align-self:flex-start;background:#282924;border:1px solid #3a3b35;border-bottom-left-radius:5px}.message .role{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-2);margin-bottom:5px}.message.error{border-color:#874e48;color:#ffd0ca}.typing{display:inline-block;width:6px;height:1em;margin-left:4px;vertical-align:-2px;background:var(--accent);animation:blink 1s steps(2,start) infinite}@keyframes blink{to{visibility:hidden}}
-    .composer{padding:12px 15px max(13px,var(--safe-bottom));border-top:1px solid var(--line);background:#1a1b19}.compose-box{border:1px solid #4a4b43;background:#242521;border-radius:14px;padding:8px;display:flex;align-items:flex-end;gap:8px}.compose-box:focus-within{border-color:#a5845d}.compose-box textarea{flex:1;resize:none;min-height:42px;max-height:150px;border:0;outline:0;background:transparent;color:var(--text);padding:8px 9px;line-height:1.5}.compose-box textarea::placeholder{color:#85867e}.send{background:var(--accent);color:#191714;border:0;border-radius:10px;padding:9px 13px;font-weight:650;min-width:72px}.send:hover{background:var(--accent-2)}.compose-note{color:#85867e;font-size:10px;padding:6px 5px 0}
+    .message{max-width:min(82%,680px);white-space:pre-wrap;overflow-wrap:anywhere;padding:13px 16px;border-radius:16px;font-size:15px;line-height:1.75;position:relative}.message.user{align-self:flex-end;background:#39342c;border:1px solid #6d5942;border-bottom-right-radius:5px}.message.assistant{align-self:flex-start;background:#282924;border:1px solid #3a3b35;border-bottom-left-radius:5px}.message.ooc{background:#1b2533!important;border-color:#3b82f6!important}.message .role-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.message .role{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-2)}.message.ooc .role{color:#60a5fa}.message.error{border-color:#874e48;color:#ffd0ca}.edit-btn{background:none;border:none;color:var(--muted);font-size:11px;cursor:pointer;padding:2px 6px;border-radius:4px}.edit-btn:hover{color:var(--text);background:#ffffff15}.typing{display:inline-block;width:6px;height:1em;margin-left:4px;vertical-align:-2px;background:var(--accent);animation:blink 1s steps(2,start) infinite}@keyframes blink{to{visibility:hidden}}
+    .composer{padding:12px 15px max(13px,var(--safe-bottom));border-top:1px solid var(--line);background:#1a1b19}.compose-box{border:1px solid #4a4b43;background:#242521;border-radius:14px;padding:8px;display:flex;align-items:flex-end;gap:8px}.compose-box:focus-within{border-color:#a5845d}.compose-box textarea{flex:1;resize:none;min-height:42px;max-height:150px;border:0;outline:0;background:transparent;color:var(--text);padding:8px 9px;line-height:1.5}.compose-box textarea::placeholder{color:#85867e}.send{background:var(--accent);color:#191714;border:0;border-radius:10px;padding:9px 13px;font-weight:650;min-width:72px}.send:hover{background:var(--accent-2)}.compose-note{color:#85867e;font-size:11px;padding:6px 5px 0;display:flex;justify-content:space-between;align-items:center}
     aside{display:flex;flex-direction:column;gap:12px}.side-card{padding:16px}.side-card h3{font:600 12px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 12px}.model-line{font-size:14px;overflow-wrap:anywhere}.provider-label{font-size:12px;color:var(--muted);margin-top:3px}.side-card p{font-size:12px;color:var(--muted);margin:10px 0 0}.prompt-box{width:100%;min-height:120px;resize:vertical;background:#171816;border:1px solid var(--line);border-radius:10px;color:var(--text);padding:10px;font-size:12px;line-height:1.6}.side-card .full{width:100%;margin-top:9px}.fineprint{font-size:11px;color:#85867e;line-height:1.55}.fineprint a{color:var(--accent-2)}
     .primary{background:var(--accent);border:0;color:#1d1a16;border-radius:10px;padding:10px 13px;font-weight:650}.secondary{background:#ffffff08;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:9px 12px}.danger{color:var(--danger)}
-    dialog{width:min(560px,calc(100% - 22px));max-height:calc(100dvh - 28px);padding:0;border:1px solid #494a42;border-radius:18px;background:#20211e;color:var(--text);box-shadow:0 24px 90px #0009}dialog::backdrop{background:#080908bb;backdrop-filter:blur(4px)}.modal-head{padding:17px 19px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.modal-head h2{font:500 20px Georgia,serif;margin:0}.modal-body{padding:17px 19px;overflow:auto;max-height:calc(100dvh - 150px)}.form-row{margin-bottom:14px}.form-row label{display:block;font-size:12px;color:#c8c6bd;margin-bottom:6px}.form-row input,.form-row select,.form-row textarea{width:100%;border:1px solid #45463f;background:#171816;border-radius:9px;color:var(--text);padding:10px 11px;outline:none}.form-row input:focus,.form-row select:focus,.form-row textarea:focus{border-color:var(--accent)}.form-row textarea{min-height:138px;resize:vertical;line-height:1.6}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.inline{display:flex;align-items:flex-start;gap:9px;color:var(--muted);font-size:12px}.inline input{margin-top:4px;accent-color:var(--accent)}.help{font-size:11px;color:#92938b;margin:6px 0 0;line-height:1.5}.modal-actions{display:flex;gap:8px;justify-content:flex-end;padding:0 19px 18px}.notice{border:1px solid #726044;background:#d2a66d10;color:#d5c3a8;padding:10px 12px;border-radius:10px;font-size:12px;line-height:1.5;margin-bottom:15px}.notice strong{color:var(--accent-2)}.toast{position:fixed;left:50%;bottom:calc(20px + var(--safe-bottom));transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#32332e;border:1px solid #55564e;border-radius:99px;padding:9px 14px;font-size:12px;transition:.2s;z-index:9}.toast.show{opacity:1;transform:translate(-50%,0)}
+    dialog{width:min(560px,calc(100% - 22px));max-height:calc(100dvh - 28px);padding:0;border:1px solid #494a42;border-radius:18px;background:#20211e;color:var(--text);box-shadow:0 24px 90px #0009}dialog::backdrop{background:#080908bb;backdrop-filter:blur(4px)}.modal-head{padding:17px 19px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.modal-head h2{font:500 20px Georgia,serif;margin:0}.modal-body{padding:17px 19px;overflow:auto;max-height:calc(100dvh - 150px)}.form-row{margin-bottom:14px}.form-row label{display:block;font-size:12px;color:#c8c6bd;margin-bottom:6px}.form-row input,.form-row select,.form-row textarea{width:100%;border:1px solid #45463f;background:#171816;border-radius:99px;color:var(--text);padding:10px 11px;outline:none}.form-row input:focus,.form-row select:focus,.form-row textarea:focus{border-color:var(--accent)}.form-row textarea{min-height:138px;border-radius:9px;resize:vertical;line-height:1.6}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.inline{display:flex;align-items:flex-start;gap:9px;color:var(--muted);font-size:12px}.inline input{margin-top:4px;accent-color:var(--accent)}.help{font-size:11px;color:#92938b;margin:6px 0 0;line-height:1.5}.modal-actions{display:flex;gap:8px;justify-content:flex-end;padding:0 19px 18px}.notice{border:1px solid #726044;background:#d2a66d10;color:#d5c3a8;padding:10px 12px;border-radius:10px;font-size:12px;line-height:1.5;margin-bottom:15px}.notice strong{color:var(--accent-2)}.toast{position:fixed;left:50%;bottom:calc(20px + var(--safe-bottom));transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#32332e;border:1px solid #55564e;border-radius:99px;padding:9px 14px;font-size:12px;transition:.2s;z-index:9}.toast.show{opacity:1;transform:translate(-50%,0)}
     @media(max-width:800px){.app{padding:0 12px}header{height:60px}.brand h1{font-size:14px}.status{display:none}main{display:block;padding:10px 0}.chat-card{min-height:calc(100dvh - 84px);height:calc(100dvh - 84px);border-radius:15px}.chat-head{padding:12px 13px}.messages{padding:18px 12px}.message{max-width:92%;font-size:14px}.composer{padding:10px 9px max(10px,var(--safe-bottom))}.compose-box textarea{font-size:16px;min-height:40px}.side-panel{display:none}.two{grid-template-columns:1fr}.modal-body{padding:14px}.modal-actions{padding:0 14px 14px}.brand small{font-size:10px}}
     @media(min-width:801px){.app{height:100dvh}.chat-card{height:100%;min-height:0}.messages{min-height:0}}
   </style>
@@ -41,12 +41,21 @@
         <div class="messages" id="messages" aria-live="polite">
           <div class="welcome" id="welcome"><div class="ornament">✦</div><h2>故事，從你開口開始。</h2><p>設定 Gemini、OpenRouter 或任何支援 OpenAI Chat Completions 格式的 API，貼上你的開場，開始接續故事。</p><span class="hint">你的 API Key 由本機瀏覽器直接送往服務商</span><p style="margin-top:18px"><button class="primary" id="welcomeSettings" type="button">設定 API</button></p></div>
         </div>
-        <div class="composer"><div class="compose-box"><textarea id="userInput" rows="1" placeholder="寫下角色的話、動作，或故事開場…" aria-label="輸入訊息"></textarea><button class="send" id="sendBtn" type="button">送出</button></div><div class="compose-note">Enter 送出 · Shift + Enter 換行</div></div>
+        <div class="composer">
+          <div class="compose-box"><textarea id="userInput" rows="1" placeholder="寫下角色的話、動作，或故事開場… (打 OOC: 可諮詢後台)" aria-label="輸入訊息"></textarea><button class="send" id="sendBtn" type="button">送出</button></div>
+          <div class="compose-note">
+            <span>Enter 送出 · Shift + Enter 換行</span>
+            <label style="display:inline-flex;align-items:center;gap:4px;cursor:pointer;color:var(--accent-2);font-size:11px;">
+              <input type="checkbox" id="oocModeCheck" style="accent-color:var(--accent);">
+              <span>💬 OOC 模式 (召喚 Fox 後台助手/不佔用故事上下文)</span>
+            </label>
+          </div>
+        </div>
       </section>
       <aside class="side-panel">
         <section class="side-card"><h3>目前連線</h3><div class="model-line" id="sideModel">尚未設定</div><div class="provider-label" id="sideProvider">請先填入你的 API 資訊</div><button class="secondary full" id="sideSettings" type="button">API 與模型設定</button></section>
         <section class="side-card"><h3>場景指引</h3><textarea class="prompt-box" id="systemPrompt" aria-label="系統指引"></textarea><p>可在這裡調整聲線、角色資訊與寫作方式；變更會套用到下一次送出的內容。</p></section>
-        <section class="side-card fineprint">API Key 預設只在這個分頁暫存。勾選「記住這台裝置」後才會存進此瀏覽器；對話也只存在本機。請勿在共用裝置儲存金鑰。<br><br>非 OpenAI 相容格式的 API 需要額外的服務商介接。</section>
+        <section class="side-card fineprint">API Key 預設只在這個分頁暫存。勾選「記住這台裝置」後才會存進此瀏覽器；對話也只存在本機。請勿在共用裝置儲存金鑰。<br><br>點擊對白旁的 ✏️ 可直接編輯內容（不重新引發 AI 生成）。<br>打出 OOC: 或勾選 OOC 模式可諮詢後台助手。</section>
       </aside>
     </main>
   </div>
@@ -78,7 +87,75 @@
       function currentConfig(){return {provider:$("provider").value,baseUrl:$("baseUrl").value.trim(),model:$("model").value.trim(),temperature:Number($("temperature").value),remember:$("rememberKey").checked}}
       function endpoint(base,part){let u;try{u=new URL(base)}catch{throw Error("請輸入有效的 API Base URL")};if(u.protocol!=="https:")throw Error("為保護 API Key，網址必須使用 HTTPS");u.hash="";u.search="";let p=u.pathname.replace(/\/+$/,"");const suffix=part==="chat"?"/chat/completions":"/models";if(p.endsWith(suffix))return u.toString();return u.origin+(p||"")+suffix}
       function setStatus(ready){const c=currentConfig();$("statusDot").classList.toggle("on",ready);$("statusText").textContent=ready?"API 已設定":"尚未設定 API";$("headerModel").textContent=ready?`${providerNames[c.provider]} · ${c.model||"未填模型"}`:"先填入自己的 API，就能開始";$("sideModel").textContent=c.model||"尚未設定模型";$("sideProvider").textContent=ready?`${providerNames[c.provider]} · OpenAI 相容端點`:"請先填入你的 API 資訊"}
-      function render(){const box=$("messages");box.querySelectorAll(".message").forEach(n=>n.remove());$("welcome").hidden=messages.length>0;for(const m of messages){const el=document.createElement("article");el.className=`message ${m.role}${m.error?" error":""}`;const role=document.createElement("div");role.className="role";role.textContent=m.role==="user"?"你":"Fox";const body=document.createElement("div");body.textContent=m.content;el.append(role,body);box.append(el)}box.scrollTop=box.scrollHeight;localStorage.setItem("swk-messages",JSON.stringify(messages))}
+      
+      window.startEditMsg = function(idx){
+        const m = messages[idx];
+        if(!m) return;
+        const box=$("messages");
+        const msgNodes = box.querySelectorAll(".message");
+        const el = msgNodes[idx];
+        if(!el) return;
+        const bodyNode = el.querySelector(".msg-body-text");
+        if(!bodyNode) return;
+        bodyNode.innerHTML = `
+          <textarea id="edit_input_${idx}" style="width:100%;min-height:80px;background:#171816;border:1px solid var(--accent);color:var(--text);padding:8px;border-radius:8px;font:inherit;margin-top:5px;">${escapeHtml(m.content)}</textarea>
+          <div style="display:flex;gap:6px;justify-content:flex-end;margin-top:6px;">
+            <button type="button" class="secondary" style="padding:4px 8px;font-size:11px;" onclick="render()">✕ 取消</button>
+            <button type="button" class="primary" style="padding:4px 8px;font-size:11px;" onclick="saveEditMsg(${idx})">✓ 保存對白</button>
+          </div>
+        `;
+      };
+
+      window.saveEditMsg = function(idx){
+        const inp = $(`edit_input_${idx}`);
+        if(inp){
+          messages[idx].content = inp.value;
+          render();
+          flash("對白已修正（未引發重新生成）");
+        }
+      };
+
+      function escapeHtml(str){
+        return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      }
+
+      function render(){
+        const box=$("messages");
+        box.querySelectorAll(".message").forEach(n=>n.remove());
+        $("welcome").hidden=messages.length>0;
+        messages.forEach((m, idx)=>{
+          const el=document.createElement("article");
+          el.className=`message ${m.role}${m.error?" error":""}${m.isOOC?" ooc":""}`;
+          
+          const roleBar=document.createElement("div");
+          roleBar.className="role-bar";
+          
+          const role=document.createElement("div");
+          role.className="role";
+          let roleName = m.role==="user"?"你":"Fox";
+          if(m.isOOC) roleName += " (OOC 助手)";
+          role.textContent=roleName;
+
+          const editBtn=document.createElement("button");
+          editBtn.type="button";
+          editBtn.className="edit-btn";
+          editBtn.textContent="✏️ 編輯";
+          editBtn.title="編輯此對白（不重新引發生成）";
+          editBtn.onclick=()=>startEditMsg(idx);
+
+          roleBar.append(role, editBtn);
+
+          const body=document.createElement("div");
+          body.className="msg-body-text";
+          body.textContent=m.content;
+          
+          el.append(roleBar,body);
+          box.append(el);
+        });
+        box.scrollTop=box.scrollHeight;
+        localStorage.setItem("swk-messages",JSON.stringify(messages));
+      }
+
       function loadConfig(){const provider=savedConfig.provider||"openrouter";$("provider").value=provider;$("baseUrl").value=savedConfig.baseUrl||defaults[provider]||"";$("model").value=savedConfig.model||"";$("temperature").value=savedConfig.temperature??0.9;$("tempLabel").textContent=Number($("temperature").value).toFixed(1);$("systemPrompt").value=localStorage.getItem("swk-prompt")||defaultPrompt;$("rememberKey").checked=Boolean(savedConfig.remember);if(savedConfig.remember&&savedConfig.apiKey)keyInMemory=savedConfig.apiKey;setStatus(Boolean(savedConfig.baseUrl&&savedConfig.model&&keyInMemory));if(!savedConfig.baseUrl||!savedConfig.model||!keyInMemory)$("settingsDialog").showModal()}
       function save(){const c=currentConfig();if(!c.baseUrl){flash("請填入 API Base URL");return}if(!c.model){flash("請填入模型 ID");return}if(!$("apiKey").value.trim()&&!keyInMemory){flash("請填入 API Key");return}if($("apiKey").value.trim())keyInMemory=$("apiKey").value.trim();const data={provider:c.provider,baseUrl:c.baseUrl,model:c.model,temperature:c.temperature,remember:c.remember};if(c.remember)data.apiKey=keyInMemory;localStorage.setItem("swk-config",JSON.stringify(data));savedConfig=data;localStorage.setItem("swk-prompt",$("systemPrompt").value);setStatus(true);$("settingsDialog").close();flash("設定已儲存")}
       function hydrate(){if(savedConfig.remember&&savedConfig.apiKey)keyInMemory=savedConfig.apiKey;$("provider").value=savedConfig.provider||"openrouter";$("baseUrl").value=savedConfig.baseUrl||defaults[$("provider").value]||"";$("model").value=savedConfig.model||"";$("temperature").value=savedConfig.temperature??0.9;$("rememberKey").checked=Boolean(savedConfig.remember);$("apiKey").value=savedConfig.remember?savedConfig.apiKey||"":""}
@@ -87,9 +164,73 @@
       ["openSettings","welcomeSettings","sideSettings"].forEach(id=>$(id).addEventListener("click",()=>{hydrate();$("settingsDialog").showModal()}));$("closeSettings").addEventListener("click",()=>$("settingsDialog").close());$("saveSettings").addEventListener("click",save);
       $("forgetKey").addEventListener("click",()=>{const c=readJSON("swk-config",{});delete c.apiKey;c.remember=false;savedConfig=c;localStorage.setItem("swk-config",JSON.stringify(c));keyInMemory="";$("apiKey").value="";$("rememberKey").checked=false;flash("已從這台裝置清除儲存的 Key")});
       $("loadModels").addEventListener("click",async()=>{const c=currentConfig(),k=$("apiKey").value.trim()||keyInMemory;if(!c.baseUrl||!k){$("modelStatus").textContent="先填 Base URL 與 API Key";return}$("modelStatus").textContent="載入中…";try{const r=await fetch(endpoint(c.baseUrl,"models"),{headers:{Authorization:`Bearer ${k}`}});const d=await r.json();if(!r.ok)throw Error(d.error?.message||d.message||`HTTP ${r.status}`);const list=Array.isArray(d.data)?d.data:[];$("modelsList").replaceChildren(...list.map(x=>{const o=document.createElement("option");o.value=x.id;return o}));$("modelStatus").textContent=list.length?`找到 ${list.length} 個模型，請選擇或自行輸入`:"服務商未回傳模型清單，請自行輸入模型 ID"}catch(e){$("modelStatus").textContent=`無法載入：${e.message}`}});
-      async function send(){if(busy){aborter?.abort();return}const c=currentConfig(),text=$("userInput").value.trim();if(!text)return;if(!c.baseUrl||!c.model||!keyInMemory){hydrate();$("settingsDialog").showModal();flash("完成 API 設定後即可開始");return}messages.push({role:"user",content:text});$("userInput").value="";$("userInput").style.height="auto";messages.push({role:"assistant",content:""});render();const answer=messages[messages.length-1];busy=true;aborter=new AbortController();$("sendBtn").textContent="停止";try{const reqMessages=[{role:"system",content:$("systemPrompt").value.trim()||defaultPrompt},...messages.slice(0,-1).map(({role,content})=>({role,content}))];const res=await fetch(endpoint(c.baseUrl,"chat"),{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${keyInMemory}`},body:JSON.stringify({model:c.model,messages:reqMessages,temperature:c.temperature,stream:false}),signal:aborter.signal});let data;try{data=await res.json()}catch{throw Error(`服務商回傳非 JSON 回應（HTTP ${res.status}）`)}if(!res.ok)throw Error(data.error?.message||data.message||`HTTP ${res.status}`);answer.content=data.choices?.[0]?.message?.content;if(Array.isArray(answer.content))answer.content=answer.content.map(x=>x.text||"").join("");if(typeof answer.content!=="string"||!answer.content)throw Error("模型沒有回傳文字，請確認模型與 API 格式相容")}catch(e){if(e.name==="AbortError")answer.content+="\n\n（已停止生成）";else{answer.content=`連線失敗：${e.message}\n\n請檢查 Base URL、模型 ID、API Key 與服務商的 CORS 設定。`;answer.error=true}}finally{busy=false;aborter=null;$("sendBtn").textContent="送出";render();$("userInput").focus()}}
+
+      async function send(){
+        if(busy){aborter?.abort();return}
+        const c=currentConfig(),rawText=$("userInput").value.trim();
+        if(!rawText)return;
+
+        let isOOC = $("oocModeCheck")?.checked || false;
+        let cleanText = rawText;
+        if(/^(ooc:|\[ooc\]|\/ooc)/i.test(rawText)){
+          isOOC = true;
+          cleanText = rawText.replace(/^(ooc:|\[ooc\]|\/ooc)\s*/i, "");
+        }
+
+        if(!c.baseUrl||!c.model||!keyInMemory){
+          if(!isOOC){
+            hydrate();$("settingsDialog").showModal();flash("完成 API 設定後即可開始");return;
+          }
+        }
+
+        messages.push({role:"user",content:cleanText,isOOC:isOOC});
+        $("userInput").value="";$("userInput").style.height="auto";
+        if($("oocModeCheck")) $("oocModeCheck").checked=false;
+
+        messages.push({role:"assistant",content:"",isOOC:isOOC});
+        render();
+
+        const answer=messages[messages.length-1];
+        busy=true;
+        aborter=new AbortController();
+        $("sendBtn").textContent="停止";
+
+        try{
+          // EXCLUDE ALL OOC MESSAGES FROM RP CONTEXT FOR STORY GENERATION
+          const rpContext = messages.filter(m => !m.isOOC);
+          
+          let reqSystemPrompt = $("systemPrompt").value.trim()||defaultPrompt;
+          if(isOOC){
+            reqSystemPrompt += "\n\n【注意：使用者正在以 OOC (Out Of Character) 後台模式提問】請作為後台寫作助手 Fox 簡短解答使用者的劇情、Prompt、語氣或設定疑問。不要進行角色扮演。";
+          }
+
+          const reqMessages=[
+            {role:"system",content:reqSystemPrompt},
+            ...(isOOC ? [{role:"user",content:cleanText}] : rpContext.slice(0,-1).map(({role,content})=>({role,content})))
+          ];
+
+          const res=await fetch(endpoint(c.baseUrl,"chat"),{
+            method:"POST",
+            headers:{"Content-Type":"application/json",Authorization:`Bearer ${keyInMemory}`},
+            body:JSON.stringify({model:c.model,messages:reqMessages,temperature:c.temperature,stream:false}),
+            signal:aborter.signal
+          });
+          let data;
+          try{data=await res.json()}catch{throw Error(`服務商回傳非 JSON 回應（HTTP ${res.status}）`)}
+          if(!res.ok)throw Error(data.error?.message||data.message||`HTTP ${res.status}`);
+          answer.content=data.choices?.[0]?.message?.content;
+          if(Array.isArray(answer.content))answer.content=answer.content.map(x=>x.text||"").join("");
+          if(typeof answer.content!=="string"||!answer.content)throw Error("模型沒有回傳文字，請確認模型與 API 格式相容")
+        }catch(e){
+          if(e.name==="AbortError")answer.content+="\n\n（已停止生成）";
+          else{answer.content=`連線失敗：${e.message}\n\n請檢查 Base URL、模型 ID、API Key 與服務商的 CORS 設定。`;answer.error=true}
+        }finally{
+          busy=false;aborter=null;$("sendBtn").textContent="送出";render();$("userInput").focus()
+        }
+      }
+
       $("sendBtn").addEventListener("click",send);$("userInput").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send()}});$("userInput").addEventListener("input",e=>{e.target.style.height="auto";e.target.style.height=Math.min(e.target.scrollHeight,150)+"px"});
-      $("clearChat").addEventListener("click",()=>{if(!messages.length)return;messages.splice(0);render();flash("對話已清空")});$("exportChat").addEventListener("click",()=>{if(!messages.length){flash("目前沒有可匯出的對話");return}const md=messages.map(m=>`### ${m.role==="user"?"你":"Fox"}\n\n${m.content}`).join("\n\n---\n\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([md],{type:"text/markdown;charset=utf-8"}));a.download=`spicy-writing-${new Date().toISOString().slice(0,10)}.md`;a.click();URL.revokeObjectURL(a.href)});
+      $("clearChat").addEventListener("click",()=>{if(!messages.length)return;messages.splice(0);render();flash("對話已清空")});$("exportChat").addEventListener("click",()=>{if(!messages.length){flash("目前沒有可匯出的對話");return}const md=messages.map(m=>`### ${m.role==="user"?"你":"Fox"}${m.isOOC?" (OOC)":""}\n\n${m.content}`).join("\n\n---\n\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([md],{type:"text/markdown;charset=utf-8"}));a.download=`spicy-writing-${new Date().toISOString().slice(0,10)}.md`;a.click();URL.revokeObjectURL(a.href)});
       loadConfig();render();if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
     })();
   </script>
