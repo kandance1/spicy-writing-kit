@@ -1,0 +1,12 @@
+{
+  "name": "Spicy Writing Kit｜互動寫作",
+  "short_name": "互動寫作",
+  "description": "使用自己的相容 API，在手機上開始互動寫作。",
+  "lang": "zh-Hant",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#171816",
+  "theme_color": "#171816",
+  "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

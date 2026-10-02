@@ -42,6 +42,15 @@ git clone git@github.com:<你的帳號>/spicy-writing-kit.git
 
 跑同一個 `install.sh` 即可——它會在目標專案放入 `AGENTS.md`（Codex、Antigravity、Cursor 等通用）與 `GEMINI.md`。這些工具沒有 skill 觸發機制，蒸餾版規範直接內嵌在 AGENTS.md 裡，場景範本靠檔案指路。
 
+## 手機互動寫作網頁
+
+手機版互動頁面的原始檔放在 `web/`，入口是 `web/index.html`，可將 `web/` 直接部署到 Cloudflare Pages。
+
+- 內建 Gemini、OpenRouter、OpenAI 範本，也可設定其他支援 OpenAI Chat Completions 格式的 API。
+- API Key 由瀏覽器直接傳給使用者設定的服務商；預設只在分頁記憶體使用，勾選後才保存在該裝置的瀏覽器。
+- 對話記錄保存在本機瀏覽器，可匯出 Markdown；網站不提供伺服器端代理或共用 API Key。
+- 自訂 API 須使用 HTTPS，並允許瀏覽器跨來源請求；非 OpenAI 相容協定需要額外介接。
+
 ## 各工具行為差異
 
 | | Claude Code | Codex / Antigravity |
