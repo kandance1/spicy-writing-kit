@@ -1,5 +1,6 @@
 /**
  * Spicy Writing Kit - Interactive Web Application Logic
+ * Supports: Guideline Viewer, Prompt Generator, Anti-slop Linter, RP Sandbox with Dialogue Editing & OOC Support
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -135,6 +136,9 @@ function initPromptGenerator() {
       prompt += `- Path C (Chaos): Unexpected environmental factor or sudden behavioral shift.\n`;
     }
 
+    prompt += `\n## OOC Management\n`;
+    prompt += `When user sends messages starting with "OOC:" or "[OOC]", answer in OOC helper mode to answer meta writing questions, and do NOT treat OOC messages as part of the fictional story context.\n`;
+
     promptOutput.textContent = prompt;
   }
 
@@ -257,14 +261,30 @@ function initLinter() {
 }
 
 /* ----------------------------------------------------
- * 5. Interactive RP Sandbox Simulator
+ * 5. Interactive RP Sandbox (State-based, Dialogue Editing, OOC)
  * ---------------------------------------------------- */
+let chatState = {
+  messages: [
+    {
+      id: 'msg_init',
+      role: 'assistant',
+      author: 'Fox',
+      content: '（Fox 悠閒地靠在椅背上，嘴角帶著一抹似笑非笑的弧度，眼神亮得有些惹眼）\n準備好了？把你想寫的對話或場景開個頭，我們直接開始。',
+      isOOC: false,
+      paths: null
+    }
+  ]
+};
+
 function initSandbox() {
   const chatBox = document.getElementById('chat-box');
   const chatInput = document.getElementById('chat-input');
   const sendBtn = document.getElementById('send-btn');
+  const oocToggle = document.getElementById('ooc-toggle-check');
 
   if (!sendBtn) return;
+
+  renderMessages();
 
   sendBtn.addEventListener('click', handleUserSend);
   chatInput.addEventListener('keypress', (e) => {
@@ -275,59 +295,187 @@ function initSandbox() {
   });
 
   function handleUserSend() {
-    const message = chatInput.value.trim();
-    if (!message) return;
+    const rawInput = chatInput.value.trim();
+    if (!rawInput) return;
 
-    appendMessage('user', message);
+    // Check OOC
+    let isOOC = false;
+    let cleanText = rawInput;
+
+    if (oocToggle && oocToggle.checked) {
+      isOOC = true;
+    }
+
+    if (/^(ooc:|\[ooc\]|\/ooc)/i.test(rawInput)) {
+      isOOC = true;
+      cleanText = rawInput.replace(/^(ooc:|\[ooc\]|\/ooc)\s*/i, '');
+    }
+
+    // Add user message to state
+    const userMsgObj = {
+      id: 'msg_' + Date.now(),
+      role: 'user',
+      author: isOOC ? '玩家 (OOC)' : '玩家',
+      content: cleanText,
+      isOOC: isOOC,
+      paths: null
+    };
+
+    chatState.messages.push(userMsgObj);
     chatInput.value = '';
+    if (oocToggle) oocToggle.checked = false; // Reset toggle after send
 
-    // Simulated Fox Response with Path A/B/C
+    renderMessages();
+
+    // Trigger AI response (simulated or API)
     setTimeout(() => {
-      generateFoxSimulatedResponse(message);
+      if (isOOC) {
+        generateOOCResponse(cleanText);
+      } else {
+        generateRPResponse(cleanText);
+      }
     }, 600);
   }
+}
 
-  function appendMessage(role, text, paths = null) {
+/* Render all messages from state */
+function renderMessages() {
+  const chatBox = document.getElementById('chat-box');
+  if (!chatBox) return;
+
+  chatBox.innerHTML = '';
+
+  chatState.messages.forEach((msg, index) => {
     const msgDiv = document.createElement('div');
-    msgDiv.className = `chat-msg ${role}`;
+    
+    let msgClass = `chat-msg ${msg.role}`;
+    if (msg.isOOC) {
+      msgClass += ` ooc-msg ${msg.role === 'user' ? 'user-ooc' : ''}`;
+    }
+    msgDiv.className = msgClass;
+    msgDiv.setAttribute('id', msg.id);
 
-    let html = `<div>${escapeHtml(text)}</div>`;
+    // Header with Author & Edit action
+    let headerHtml = `
+      <div class="chat-msg-header">
+        <span class="chat-msg-author">${msg.isOOC ? '💬 ' : ''}${escapeHtml(msg.author)}</span>
+        <div class="chat-msg-actions">
+          <button class="msg-edit-btn" onclick="startEditMessage('${msg.id}')" title="編輯此對白（不重新生成對話）">✏️ 編輯</button>
+        </div>
+      </div>
+    `;
 
-    if (paths && paths.length > 0) {
-      html += `<div class="paths-container">
+    // Content or Editing view
+    let bodyHtml = `<div class="msg-content-text">${escapeHtml(msg.content).replace(/\n/g, '<br>')}</div>`;
+
+    // Paths container if present
+    if (msg.paths && msg.paths.length > 0) {
+      bodyHtml += `<div class="paths-container">
         <div style="font-size: 0.78rem; color: #f59e0b; margin-bottom: 0.2rem; font-weight: 600;">選擇下一步發展 (Branching Options):</div>
-        ${paths.map(p => `<button class="path-option-btn" onclick="selectPath('${escapeHtml(p.label)}')"><strong>${p.tag}</strong>: ${p.label}</button>`).join('')}
+        ${msg.paths.map(p => `<button class="path-option-btn" onclick="selectPath('${escapeHtml(p.label)}')"><strong>${p.tag}</strong>: ${p.label}</button>`).join('')}
       </div>`;
     }
 
-    msgDiv.innerHTML = html;
+    msgDiv.innerHTML = headerHtml + bodyHtml;
     chatBox.appendChild(msgDiv);
-    chatBox.scrollTop = chatBox.scrollHeight;
+  });
+
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+/* Edit message directly in state without auto-generating */
+window.startEditMessage = function(msgId) {
+  const msgObj = chatState.messages.find(m => m.id === msgId);
+  if (!msgObj) return;
+
+  const msgDiv = document.getElementById(msgId);
+  if (!msgDiv) return;
+
+  const textElement = msgDiv.querySelector('.msg-content-text');
+  if (!textElement) return;
+
+  // Replace text with editable textarea & save/cancel buttons
+  textElement.innerHTML = `
+    <textarea class="edit-textarea" id="edit_input_${msgId}">${escapeHtml(msgObj.content)}</textarea>
+    <div class="edit-controls">
+      <button class="btn btn-sm btn-secondary" onclick="renderMessages()">✕ 取消</button>
+      <button class="btn btn-sm" onclick="saveEditedMessage('${msgId}')">✓ 保存對白</button>
+    </div>
+  `;
+};
+
+window.saveEditedMessage = function(msgId) {
+  const inputElem = document.getElementById(`edit_input_${msgId}`);
+  if (!inputElem) return;
+
+  const newContent = inputElem.value.trim();
+  const msgObj = chatState.messages.find(m => m.id === msgId);
+
+  if (msgObj && newContent) {
+    msgObj.content = newContent;
   }
 
-  function generateFoxSimulatedResponse(userMsg) {
-    const sampleResponses = [
-      {
-        text: `（Fox 靠在桌邊，眼角帶著一抹乾爽的笑意，微挑起眉）你這話可真夠直接的。行，既然已經把氣氛拉到這位置，我也沒打算收著。屋裡的燈光暗得恰到好處，空氣裡那股淡香和呼吸的熱氣全都纏在一塊。`,
-        paths: [
-          { tag: 'Path A (心理掌控)', label: '稍微傾身靠近，眼神鎖定對方，低聲下一道心理指令' },
-          { tag: 'Path B (肢體升溫)', label: '伸手握住對方手腕，將人直接拉近至毫釐之間' },
-          { tag: 'Path C (意外轉折)', label: '外面突然傳來一陣雷聲，打斷了短暫的凝視' }
-        ]
-      },
-      {
-        text: `（懶洋洋地笑了一聲，聲音低沉流暢）你以為這就能讓我犯難？眼神收一收，裡面那點心思我都看清了。動作不必急，張力就是靠這幾步停頓疊起來的。`,
-        paths: [
-          { tag: 'Path A (心理動態)', label: '耳語一句挑釁的話，打破主導權平衡' },
-          { tag: 'Path B (體感推推進)', label: '扣緊手指，將貼近的熱度延伸至頸間' },
-          { tag: 'Path C (環境變化)', label: '隨手將酒杯推到一旁，發出清脆的冰塊撞擊聲' }
-        ]
-      }
-    ];
+  // Re-render UI with updated context (NO AI call triggered!)
+  renderMessages();
+};
 
-    const resp = sampleResponses[Math.floor(Math.random() * sampleResponses.length)];
-    appendMessage('assistant', resp.text, resp.paths);
-  }
+/* OOC Response Generator */
+function generateOOCResponse(userQuestion) {
+  const oocAnswers = [
+    `（Fox 脫下角色皮，推了推後台眼鏡，語氣乾脆輕鬆）\n【OOC 系統諮詢】收到你的後台提問！關於劇情張力：這段建議可以稍微壓慢節奏，把重點放在「心理權力動態 (Path A)」或「體感細節描寫 (Path B)」。如果你覺得前面 AI 語氣有點平，可以使用上面的 Anti-Slop 檢測器檢查一下。`,
+    `（Fox 切換為後台助手模式）\n【OOC 系統諮詢】沒問題！這段話我不會將其納入故事的角色記憶裡。關於角色設定：目前張力保持得很不錯，如果需要切換場景或加入新衝突，直接在下一句打出動作對白即可。`
+  ];
+
+  const answer = oocAnswers[Math.floor(Math.random() * oocAnswers.length)];
+
+  chatState.messages.push({
+    id: 'msg_' + Date.now(),
+    role: 'assistant',
+    author: 'Fox (OOC 助手)',
+    content: answer,
+    isOOC: true,
+    paths: null
+  });
+
+  renderMessages();
+}
+
+/* RP Response Generator (Filters out OOC messages for story context) */
+function generateRPResponse(userMsg) {
+  // Get pure RP context (excluding OOC messages)
+  const rpHistory = chatState.messages.filter(m => !m.isOOC);
+
+  const sampleResponses = [
+    {
+      text: `（Fox 靠在桌邊，眼角帶著一抹乾爽的笑意，微挑起眉）你這話可真夠直接的。行，既然已經把氣氛拉到這位置，我也沒打算收著。屋裡的燈光暗得恰到好處，空氣裡那股淡香和呼吸的熱氣全都纏在一塊。`,
+      paths: [
+        { tag: 'Path A (心理掌控)', label: '稍微傾身靠近，眼神鎖定對方，低聲下一道心理指令' },
+        { tag: 'Path B (體感升溫)', label: '伸手握住對方手腕，將人直接拉近至毫釐之間' },
+        { tag: 'Path C (意外轉折)', label: '外面突然傳來一陣雷聲，打斷了短暫的凝視' }
+      ]
+    },
+    {
+      text: `（懶洋洋地笑了一聲，聲音低沉流暢）你以為這就能讓我犯難？眼神收一收，裡面那點心思我都看清了。動作不必急，張力就是靠這幾步停頓疊起來的。`,
+      paths: [
+        { tag: 'Path A (心理動態)', label: '耳語一句挑釁的話，打破主導權平衡' },
+        { tag: 'Path B (體感推推進)', label: '扣緊手指，將貼近的熱度延伸至頸間' },
+        { tag: 'Path C (環境變化)', label: '隨手將酒杯推到一旁，發出清脆的冰塊撞擊聲' }
+      ]
+    }
+  ];
+
+  const resp = sampleResponses[Math.floor(Math.random() * sampleResponses.length)];
+
+  chatState.messages.push({
+    id: 'msg_' + Date.now(),
+    role: 'assistant',
+    author: 'Fox',
+    content: resp.text,
+    isOOC: false,
+    paths: resp.paths
+  });
+
+  renderMessages();
 }
 
 // Global helper for path selection in sandbox

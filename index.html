@@ -43,6 +43,7 @@
           <button class="subnav-btn" data-section="sec-prose-craft">🔥 親密筆法與體能邏輯</button>
           <button class="subnav-btn" data-section="sec-anti-slop">🚫 Anti-Slop 人類寫作規範</button>
           <button class="subnav-btn" data-section="sec-branching">🔀 三分法分支模式</button>
+          <button class="subnav-btn" data-section="sec-ooc">💬 OOC 系統諮詢功能</button>
         </aside>
 
         <article class="card doc-content">
@@ -116,6 +117,17 @@
               <li><strong>Path A — 心理動態 (Psychological)</strong>：權力關係轉移、耳語指令或情感轉折。</li>
               <li><strong>Path B — 體感升溫 (Physical Escalation)</strong>：加強體感動作或變換體位。</li>
               <li><strong>Path C — 環境意外 (Chaos)</strong>：環境突發因素或外部行為驟變。</li>
+            </ul>
+          </div>
+
+          <!-- Section 6: OOC Helper -->
+          <div id="sec-ooc" class="doc-section" style="display: none;">
+            <div class="card-title">💬 OOC (Out Of Character) 後台系統諮詢</div>
+            <div class="badge badge-ooc" style="margin-bottom: 1rem;">後台輔助 / 不佔用故事上下文</div>
+            <p>在角色扮演沙盒中，只要打出 <code>OOC:</code> 或點擊 <code>[OOC 模式]</code> 按鈕，即可隨時召喚 Fox 作為後台管理者與寫作輔助助手：</p>
+            <ul>
+              <li><strong>後台諮詢</strong>：詢問節奏建議、角色設定調整、Prompt 寫作疑問或劇情走向分析。</li>
+              <li><strong>上下文隔離</strong>：所有標示為 <code>OOC</code> 的問答對話<strong>不會被計入故事上下文</strong>，避免破壞角色沉浸感。</li>
             </ul>
           </div>
         </article>
@@ -200,19 +212,26 @@
     <!-- Tab 4: RP Sandbox -->
     <section id="tab-sandbox" class="tab-content">
       <div class="card">
-        <div class="card-title">💬 Fox 聲線互動沙盒測試</div>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">在此體驗「Fox」聲線的語氣節奏與 Path A/B/C 三分法選項互動：</p>
-        
-        <div id="chat-box" class="chat-box">
-          <div class="chat-msg assistant">
-            （Fox 悠閒地靠在椅背上，嘴角帶著一抹似笑非笑的弧度，眼神亮得有些惹眼）
-            準備好了？把你想寫的對話或場景開個頭，我們直接開始。
-          </div>
+        <div class="card-title" style="justify-content: space-between; align-items: center;">
+          <span>💬 Fox 聲線互動沙盒測試</span>
+          <span style="font-size: 0.78rem; color: var(--text-muted);">💡 提示: 點擊訊息旁 ✏️ 可直接編輯歷史對句 (不觸發重新生成)</span>
         </div>
 
-        <div style="display: flex; gap: 0.5rem;">
-          <input type="text" id="chat-input" class="form-control" placeholder="輸入互動對話或動作...">
-          <button id="send-btn" class="btn">發送</button>
+        <div id="chat-box" class="chat-box"></div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem;">
+            <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; color: #06b6d4;">
+              <input type="checkbox" id="ooc-toggle-check">
+              <strong>[OOC 模式]</strong> 召喚 Fox 後台助手 (解答問題/不列入故事上下文)
+            </label>
+            <span style="color: var(--text-dim);">輸入 `OOC:` 也可自動觸發</span>
+          </div>
+          
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="text" id="chat-input" class="form-control" placeholder="輸入故事對白，或勾選 OOC 模式詢問寫作建議...">
+            <button id="send-btn" class="btn">發送</button>
+          </div>
         </div>
       </div>
     </section>
